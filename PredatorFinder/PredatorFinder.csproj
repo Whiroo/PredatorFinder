@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Checker.cs" />
     <Compile Include="Classes\Globals.cs" />
     <Compile Include="Classes\Helper.cs" />
     <Compile Include="Forms\Form1.cs">

@@ -23,7 +23,7 @@ namespace PredatorFinder.Classes
             return roster;
         }
 
-        public void SaveText(string file, string text)
+        public static void SaveText(string file, string text)
         {
             try
             {
