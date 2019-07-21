@@ -236,5 +236,11 @@ namespace PredatorFinder
             tabControl1.SelectedTab = tabPage1;
 
         }
+
+        private void InfoLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("Set HTTP Proxy address and set timeout > 150000", "TimeOut Info",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

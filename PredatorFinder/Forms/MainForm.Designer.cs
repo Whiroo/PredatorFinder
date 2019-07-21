@@ -69,6 +69,7 @@
             this.timeoutCountLbl = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.recheckChooseButton = new System.Windows.Forms.Button();
+            this.infoLink = new System.Windows.Forms.LinkLabel();
             this.sourceGrp.SuspendLayout();
             this.settingsGrp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.threadNumeric)).BeginInit();
@@ -434,6 +435,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.infoLink);
             this.tabPage3.Controls.Add(this.recheckChooseButton);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -452,6 +454,17 @@
             this.recheckChooseButton.Text = "Choose possibly";
             this.recheckChooseButton.UseVisualStyleBackColor = true;
             this.recheckChooseButton.Click += new System.EventHandler(this.RecheckChooseButton_Click);
+            // 
+            // infoLink
+            // 
+            this.infoLink.AutoSize = true;
+            this.infoLink.Location = new System.Drawing.Point(3, 141);
+            this.infoLink.Name = "infoLink";
+            this.infoLink.Size = new System.Drawing.Size(59, 13);
+            this.infoLink.TabIndex = 1;
+            this.infoLink.TabStop = true;
+            this.infoLink.Text = "Information";
+            this.infoLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.InfoLink_LinkClicked);
             // 
             // MainForm
             // 
@@ -478,6 +491,7 @@
             this.tabPage2.PerformLayout();
             this.trayStatistic.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -523,6 +537,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button recheckChooseButton;
+        private System.Windows.Forms.LinkLabel infoLink;
     }
 }
 
