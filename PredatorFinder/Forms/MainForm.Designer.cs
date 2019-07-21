@@ -476,6 +476,8 @@
             this.Controls.Add(this.settingsGrp);
             this.Controls.Add(this.sourceGrp);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(336, 270);
+            this.MinimumSize = new System.Drawing.Size(336, 270);
             this.Name = "MainForm";
             this.Text = "PredatorFinder";
             this.Resize += new System.EventHandler(this.MainForm_Resize);
