@@ -48,6 +48,8 @@
             this.threadsLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.timeoutCountLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblLeftCount = new System.Windows.Forms.Label();
             this.lblBadCount = new System.Windows.Forms.Label();
             this.lblGoodCount = new System.Windows.Forms.Label();
@@ -58,6 +60,9 @@
             this.lblSource = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.logTxtBox = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.infoLink = new System.Windows.Forms.LinkLabel();
+            this.recheckChooseButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.trayNotify = new System.Windows.Forms.NotifyIcon(this.components);
@@ -65,19 +70,14 @@
             this.showStatisticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.timeoutCountLbl = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.recheckChooseButton = new System.Windows.Forms.Button();
-            this.infoLink = new System.Windows.Forms.LinkLabel();
             this.sourceGrp.SuspendLayout();
             this.settingsGrp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.threadNumeric)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.trayStatistic.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.trayStatistic.SuspendLayout();
             this.SuspendLayout();
             // 
             // sourceGrp
@@ -270,6 +270,24 @@
             this.tabPage1.Text = "Staticstic";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // timeoutCountLbl
+            // 
+            this.timeoutCountLbl.AutoSize = true;
+            this.timeoutCountLbl.Location = new System.Drawing.Point(71, 92);
+            this.timeoutCountLbl.Name = "timeoutCountLbl";
+            this.timeoutCountLbl.Size = new System.Drawing.Size(13, 13);
+            this.timeoutCountLbl.TabIndex = 9;
+            this.timeoutCountLbl.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 92);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "TimeOut:";
+            // 
             // lblLeftCount
             // 
             this.lblLeftCount.AutoSize = true;
@@ -362,6 +380,39 @@
             this.logTxtBox.Size = new System.Drawing.Size(157, 154);
             this.logTxtBox.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.infoLink);
+            this.tabPage3.Controls.Add(this.recheckChooseButton);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(157, 157);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Re-Check";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // infoLink
+            // 
+            this.infoLink.AutoSize = true;
+            this.infoLink.Location = new System.Drawing.Point(3, 141);
+            this.infoLink.Name = "infoLink";
+            this.infoLink.Size = new System.Drawing.Size(59, 13);
+            this.infoLink.TabIndex = 1;
+            this.infoLink.TabStop = true;
+            this.infoLink.Text = "Information";
+            this.infoLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.InfoLink_LinkClicked);
+            // 
+            // recheckChooseButton
+            // 
+            this.recheckChooseButton.Location = new System.Drawing.Point(6, 6);
+            this.recheckChooseButton.Name = "recheckChooseButton";
+            this.recheckChooseButton.Size = new System.Drawing.Size(145, 23);
+            this.recheckChooseButton.TabIndex = 0;
+            this.recheckChooseButton.Text = "Choose possibly";
+            this.recheckChooseButton.UseVisualStyleBackColor = true;
+            this.recheckChooseButton.Click += new System.EventHandler(this.RecheckChooseButton_Click);
+            // 
             // startButton
             // 
             this.startButton.Location = new System.Drawing.Point(146, 188);
@@ -415,57 +466,6 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 92);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "TimeOut:";
-            // 
-            // timeoutCountLbl
-            // 
-            this.timeoutCountLbl.AutoSize = true;
-            this.timeoutCountLbl.Location = new System.Drawing.Point(71, 92);
-            this.timeoutCountLbl.Name = "timeoutCountLbl";
-            this.timeoutCountLbl.Size = new System.Drawing.Size(13, 13);
-            this.timeoutCountLbl.TabIndex = 9;
-            this.timeoutCountLbl.Text = "0";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.infoLink);
-            this.tabPage3.Controls.Add(this.recheckChooseButton);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(157, 157);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Re-Check";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // recheckChooseButton
-            // 
-            this.recheckChooseButton.Location = new System.Drawing.Point(6, 6);
-            this.recheckChooseButton.Name = "recheckChooseButton";
-            this.recheckChooseButton.Size = new System.Drawing.Size(145, 23);
-            this.recheckChooseButton.TabIndex = 0;
-            this.recheckChooseButton.Text = "Choose possibly";
-            this.recheckChooseButton.UseVisualStyleBackColor = true;
-            this.recheckChooseButton.Click += new System.EventHandler(this.RecheckChooseButton_Click);
-            // 
-            // infoLink
-            // 
-            this.infoLink.AutoSize = true;
-            this.infoLink.Location = new System.Drawing.Point(3, 141);
-            this.infoLink.Name = "infoLink";
-            this.infoLink.Size = new System.Drawing.Size(59, 13);
-            this.infoLink.TabIndex = 1;
-            this.infoLink.TabStop = true;
-            this.infoLink.Text = "Information";
-            this.infoLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.InfoLink_LinkClicked);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,9 +491,9 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.trayStatistic.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.trayStatistic.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -93,7 +93,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\chevrondown_116455.ico" />
+    <None Include="Resources\wondicon-ui-free-search_111242.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

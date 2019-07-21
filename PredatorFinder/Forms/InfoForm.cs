@@ -16,6 +16,7 @@ namespace PredatorFinder.Forms
     {
         public InfoForm()
         {
+            this.Icon = Properties.Resources.icon;
             InitializeComponent();
         }
 

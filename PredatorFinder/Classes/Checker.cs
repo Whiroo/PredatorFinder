@@ -22,7 +22,7 @@ namespace PredatorFinder.Classes
             {
                 if (i > Globals.Source.Count)
                     break;
-                _threads[i] = new Thread(this.Checking);
+                _threads[i] = new Thread(Checking);
                 _threads[i].IsBackground = true;
                 _threads[i].Start();
             }

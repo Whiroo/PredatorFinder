@@ -17,7 +17,9 @@ namespace PredatorFinder
         private string _pattern = ".xsph.ru/login";
         public MainForm()
         {
+            Icon = Properties.Resources.icon;
             InitializeComponent();
+            
         }
 
         private async void GenerateSource()
@@ -40,15 +42,15 @@ namespace PredatorFinder
         {
             try
             {
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
                     //вызываем себя в главный поток
-                    this.Invoke(new MethodInvoker(UpdateUI), arg);
+                    Invoke(new MethodInvoker(UpdateUI), arg);
                     return;
                 }
                 //Присвоение всегда будет происходить только в главном потоке, независимот от того
                 //в каком потоке мы вызываем метод
-                this.logTxtBox.Text = arg + logTxtBox.Text;
+                logTxtBox.Text = arg + logTxtBox.Text;
             }
             catch { }
             
@@ -56,7 +58,7 @@ namespace PredatorFinder
 
         public void SetSourceTxt(string count)
         {
-            this.lblSourceCount.Text = count;
+            lblSourceCount.Text = count;
         }
 
         private void WtfLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -119,7 +121,7 @@ namespace PredatorFinder
                 startButton.Text = "Start";
                 sourceGrp.Enabled = true;
                 settingsGrp.Enabled = true;
-                this.lblLeftCount.Text = "0";
+                lblLeftCount.Text = "0";
             }
 
             lblGoodCount.Text = Globals.GoodDomain.ToString();
@@ -138,8 +140,8 @@ namespace PredatorFinder
 
         private void ShowProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
+            Show();
+            WindowState = FormWindowState.Normal;
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,15 +155,15 @@ namespace PredatorFinder
 
         private void TrayNotify_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
+            Show();
+            WindowState = FormWindowState.Normal;
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized)
             {
-                this.Hide();
+                Hide();
                 trayNotify.Visible = true;
             }
         }
