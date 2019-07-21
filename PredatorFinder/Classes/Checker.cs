@@ -36,8 +36,8 @@ namespace PredatorFinder.Classes
                 var request = (HttpWebRequest)WebRequest.Create(domain);//WebRequest.Create(domain);
                 HttpWebResponse response;
                 string strResponse;
-                if(Globals.Proxy != String.Empty)
-                    request.Proxy = new WebProxy(Globals.Proxy);
+                if (Globals.StrProxy != String.Empty || !Globals.ValidProxy)
+                    request.Proxy = Globals.Proxy;
                 request.Method = "POST";
                 request.AllowAutoRedirect = false;
                 request.ContentType = "";

@@ -79,10 +79,15 @@ namespace PredatorFinder
         {
             if (!Check.IsWork)
             {
+                
                 Globals.StarTime = DateTime.Now;
                 Globals.PossiblyDomainListTemp.Clear(); //Чистим временно хранилище возможных доменов
                 if (!string.IsNullOrEmpty(proxyTextBox.Text))
-                    Globals.Proxy = proxyTextBox.Text;
+                {
+                    Helper.CheckProxy(proxyTextBox.Text);
+                    Globals.StrProxy = proxyTextBox.Text;
+                }
+
                 if (Globals.Source.Count == 0)
                 {
                     MessageBox.Show("Please, generate domain", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);

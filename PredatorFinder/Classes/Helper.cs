@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -64,6 +65,21 @@ namespace PredatorFinder.Classes
             var roster = new List<string>();
             roster.AddRange(File.ReadAllLines(filename));
             return roster;
+        }
+
+        public static void CheckProxy(string proxy)
+        {
+            try
+            {
+                Globals.Proxy = new WebProxy(proxy);
+                Globals.ValidProxy = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Proxy not filled correctly, check will go without them ", "Proxy Warning", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Globals.ValidProxy = false;
+            }
         }
     }
 }
