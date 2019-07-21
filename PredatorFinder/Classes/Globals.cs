@@ -19,6 +19,7 @@ namespace PredatorFinder.Classes
         public static string Proxy = string.Empty;
         public static int ProxyNeed = 0;
         public static string AppPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static List<string> PossiblyDomainListTemp = new List<string>();
         public static DateTime StarTime;
 
     }

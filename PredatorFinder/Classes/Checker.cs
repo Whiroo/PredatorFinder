@@ -122,6 +122,7 @@ namespace PredatorFinder.Classes
                     {
                         Helper.SaveText(string.Format("possibly-{0:HH.mm.ss-dd-MM-yyyy}.txt", Globals.StarTime), currentDomain);
                         Globals.ProxyNeed++;
+                        Globals.PossiblyDomainListTemp.Add(currentDomain);
                     }
                 }
                 Thread.Sleep(600);

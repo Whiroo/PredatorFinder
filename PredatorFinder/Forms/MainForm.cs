@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PredatorFinder.Classes;
 using System.Diagnostics;
-
+using System.IO;
+using System.Net;
 using PredatorFinder.Forms;
 
 namespace PredatorFinder
@@ -71,6 +72,7 @@ namespace PredatorFinder
             if (!Check.IsWork)
             {
                 Globals.StarTime = DateTime.Now;
+                Globals.PossiblyDomainListTemp.Clear(); //Чистим временно хранилище возможных доменов
                 if (!string.IsNullOrEmpty(proxyTextBox.Text))
                     Globals.Proxy = proxyTextBox.Text;
                 if (Globals.Source.Count == 0)
@@ -232,10 +234,25 @@ namespace PredatorFinder
 
         private void RecheckChooseButton_Click(object sender, EventArgs e)
         {
-            Globals.Source = Helper.LoadData(Helper.OpenDialog());
-            SetSourceTxt(Globals.Source.Count.ToString());
-            MessageBox.Show($@"Loaded {Globals.Source.Count.ToString()} domains");
-            tabControl1.SelectedTab = tabPage1;
+            if (MessageBox.Show("Loaded last check possibly domain?", "Loaded", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Globals.Source.Clear();
+                Globals.Source.AddRange(Globals.PossiblyDomainListTemp);
+                MessageBox.Show($"Loaded {Globals.Source.Count.ToString()} domains");
+                SetSourceTxt(Globals.Source.Count.ToString());
+                SetZeroText();
+                tabControl1.SelectedTab = tabPage1;
+            }
+            else
+            {
+                Globals.Source = Helper.LoadData(Helper.OpenDialog());
+                SetSourceTxt(Globals.Source.Count.ToString());
+                MessageBox.Show($@"Loaded {Globals.Source.Count.ToString()} domains");
+                SetZeroText();
+                tabControl1.SelectedTab = tabPage1;
+            }
+            
 
         }
 
@@ -243,6 +260,13 @@ namespace PredatorFinder
         {
             MessageBox.Show("Set HTTP Proxy address and set timeout > 150000", "TimeOut Info",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void SetZeroText()
+        {
+            Globals.GoodDomain = 0;
+            Globals.BadDomain = 0;
+            Globals.ProxyNeed = 0;
         }
     }
 }
