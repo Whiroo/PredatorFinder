@@ -14,7 +14,7 @@ namespace PredatorFinder.Classes
     {
         public static string WorkStatus = "";
         public static int Threads = 0;
-        public static ArrayList Source = new ArrayList();
+        public static List<string> Source = new List<string>();
         public static int TimeOut = 7000;
         public static int GoodDomain = 0;
         public static int BadDomain = 0;

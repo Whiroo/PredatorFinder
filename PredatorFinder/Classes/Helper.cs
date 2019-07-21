@@ -11,9 +11,9 @@ namespace PredatorFinder.Classes
 {
     class Helper
     {
-        public static object Statistic()
+        public static string Statistic()
         {
-            object roster = "";
+            string roster = "";
 
             roster += "Source: " + Globals.Source.Count.ToString() + Environment.NewLine;
             roster += "Good: " + Globals.GoodDomain.ToString() + Environment.NewLine;
@@ -47,7 +47,7 @@ namespace PredatorFinder.Classes
 
         public static object[] LoadData(string filename)
         {
-            var roster = new ArrayList();
+            var roster = new List<string>();
             roster.AddRange(File.ReadAllLines(filename));
             return roster.ToArray();
         }

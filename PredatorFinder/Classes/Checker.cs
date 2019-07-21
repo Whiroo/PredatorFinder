@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace PredatorFinder.Classes
 {
-    class Checker
+    public class Checker
     {
         private Thread[] _threads;
         private static int _domainIndex = -1;
