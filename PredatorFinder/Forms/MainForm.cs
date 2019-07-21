@@ -25,16 +25,24 @@ namespace PredatorFinder
 
         private async void GenerateSource()
         {
-            Globals.Source.Clear();
-            _fromNumber = Convert.ToDecimal(generateFromTxt.Text);
-            _toNumber = Convert.ToDecimal(generateToTxt.Text);
-            await Task.Run(() =>
+            try
             {
-                for (decimal i = _fromNumber; i <= _toNumber; i++)
+                Globals.Source.Clear();
+                _fromNumber = Convert.ToDecimal(generateFromTxt.Text);
+                _toNumber = Convert.ToDecimal(generateToTxt.Text);
+                await Task.Run(() =>
                 {
-                    Globals.Source.Add($"http://{letterTxtBox.Text}0{i.ToString()}{_pattern}");
-                }
-            });
+                    for (decimal i = _fromNumber; i <= _toNumber; i++)
+                    {
+                        Globals.Source.Add($"http://{letterTxtBox.Text}0{i.ToString()}{_pattern}");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Fill in all TextBox", "Warning", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             SetSourceTxt((Globals.Source.Count).ToString());
         }
 
@@ -172,11 +180,7 @@ namespace PredatorFinder
 
         private void GenerateSourceButton_Click(object sender, EventArgs e)
         {
-            var stop = new Stopwatch();
-            stop.Start();
             GenerateSource();
-            stop.Stop();
-            MessageBox.Show($"{stop.Elapsed}");
         }
 
         private void GenerateFromTxt_TextChanged_1(object sender, EventArgs e)
