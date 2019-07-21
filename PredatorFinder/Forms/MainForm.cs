@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PredatorFinder.Classes;
 using System.Diagnostics;
-using System.Globalization;
-using System.Threading;
+
 using PredatorFinder.Forms;
 
 namespace PredatorFinder
@@ -174,18 +167,6 @@ namespace PredatorFinder
             GenerateSource();
             stop.Stop();
             MessageBox.Show($"{stop.Elapsed}");
-        }
-
-        private void GenerateFromTxt_TextChanged(object sender, EventArgs e)
-        {
-            generateFromTxt.Text = string.Format("{0:N3}", Convert.ToDouble(generateFromTxt.Text));
-        }
-
-        private void GenerateFromTxt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 44)
-            {
-            }
         }
 
         private void GenerateFromTxt_TextChanged_1(object sender, EventArgs e)
