@@ -26,11 +26,24 @@ namespace PredatorFinder.Classes
 
         public static void SaveText(string file, string text)
         {
+            
             try
             {
-                var write = new StreamWriter(file,true);
-                write.WriteLine(text);
-                write.Close();
+                if (Directory.Exists($@"{Globals.AppPath}\Result"))
+                {
+                    var write = new StreamWriter($@"{Globals.AppPath}\Result\{file}", true);
+                    write.WriteLine(text);
+                    write.Close();
+                }
+                else
+                {
+                    Directory.CreateDirectory($@"{Globals.AppPath}\Result");
+                    var write = new StreamWriter($@"{Globals.AppPath}\Result\{file}", true);
+                    write.WriteLine(text);
+                    write.Close();
+
+                }
+                
             }
             catch (Exception e)
             {

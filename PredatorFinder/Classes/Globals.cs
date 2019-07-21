@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace PredatorFinder.Classes
 {
@@ -16,6 +18,7 @@ namespace PredatorFinder.Classes
         public static int BadDomain = 0;
         public static string Proxy = string.Empty;
         public static int ProxyNeed = 0;
+        public static string AppPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static DateTime StarTime;
 
     }
