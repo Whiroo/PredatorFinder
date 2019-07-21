@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PredatorFinder.Classes
 {
@@ -13,6 +14,9 @@ namespace PredatorFinder.Classes
         public static int TimeOut = 7000;
         public static int GoodDomain = 0;
         public static int BadDomain = 0;
+        public static string Proxy = string.Empty;
+        public static int ProxyNeed = 0;
+        public static DateTime StarTime;
 
     }
 }

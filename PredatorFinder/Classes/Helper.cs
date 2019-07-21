@@ -15,10 +15,11 @@ namespace PredatorFinder.Classes
         {
             string roster = "";
 
-            roster += "Source: " + Globals.Source.Count.ToString() + Environment.NewLine;
-            roster += "Good: " + Globals.GoodDomain.ToString() + Environment.NewLine;
-            roster += "Bad: " + Globals.GoodDomain.ToString() + Environment.NewLine;
-            roster += "Left" + (Globals.Source.Count - (Globals.GoodDomain + Globals.BadDomain)).ToString();
+            roster += "Source: " + Globals.Source.Count + Environment.NewLine;
+            roster += "Good: " + Globals.GoodDomain + Environment.NewLine;
+            roster += "Bad: " + Globals.GoodDomain + Environment.NewLine;
+            roster += "Left: " + (Globals.Source.Count - (Globals.GoodDomain + Globals.BadDomain)) + Environment.NewLine;
+            roster += "TimeOut: " + Globals.ProxyNeed;
 
             return roster;
         }
@@ -28,7 +29,7 @@ namespace PredatorFinder.Classes
             try
             {
                 var write = new StreamWriter(file,true);
-                write.WriteLineAsync(text);
+                write.WriteLine(text);
                 write.Close();
             }
             catch (Exception e)

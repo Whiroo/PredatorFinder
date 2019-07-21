@@ -8,6 +8,8 @@ namespace PredatorFinder
 {
     static class Program
     {
+       
+        public static MainForm mFrom;
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -16,7 +18,7 @@ namespace PredatorFinder
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(mFrom = new MainForm());
         }
     }
 }

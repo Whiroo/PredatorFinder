@@ -32,16 +32,20 @@ namespace PredatorFinder.Classes
         {
             try
             {
-                var request = WebRequest.Create(domain);//WebRequest.Create(domain);
-                WebResponse response;
+                
+                var request = (HttpWebRequest)WebRequest.Create(domain);//WebRequest.Create(domain);
+                HttpWebResponse response;
                 string strResponse;
-
+                if(Globals.Proxy != String.Empty)
+                    request.Proxy = new WebProxy(Globals.Proxy);
                 request.Method = "POST";
+                request.AllowAutoRedirect = false;
                 request.ContentType = "";
                 request.Timeout = Globals.TimeOut;
-                response = request.GetResponse();
-                strResponse = response.ToString();
-                if (strResponse.Contains(""))
+                response = (HttpWebResponse) request.GetResponse();
+                strResponse = response.StatusDescription;
+                
+                if (!strResponse.Contains("Moved") && response.Server == "openresty") 
                 {
                     return "Good";
                 }
@@ -52,7 +56,7 @@ namespace PredatorFinder.Classes
             }
             catch (Exception e)
             {
-                return "Bad";
+                return e.Message.Contains("истекло") ? "handWork" : "Bad";
             }
         }
 
@@ -83,7 +87,7 @@ namespace PredatorFinder.Classes
 
                 try
                 {
-                    currentDomain = Globals.Source[localDomainIndex].ToString();
+                    currentDomain = Globals.Source[localDomainIndex];
                 }
                 catch (Exception e)
                 {
@@ -92,27 +96,32 @@ namespace PredatorFinder.Classes
                     return;
                 }
 
-                while (IsWork)
+                
+                try
                 {
-                    try
-                    {
-                        Check(currentDomain);
-                    }
-                    catch { }
-                    
+                    response = Check(currentDomain);
+                }
+                catch
+                {
                 }
 
                 lock (SyncFiles)
                 {
                     if (response.Contains("Good"))
                     {
-                        Helper.SaveText(string.Format($"good-{0:g}.txt",DateTime.Now),currentDomain);
+                        Helper.SaveText(string.Format("good-{0:HH.mm.ss-dd-MM-yyyy}.txt",Globals.StarTime),currentDomain);
                         Globals.GoodDomain++;
+                        Program.mFrom.UpdateUI(Globals.Source[localDomainIndex] + Environment.NewLine);
                     }
-                    else
+                    else if(response.Contains("Bad"))
                     {
-                        Helper.SaveText(string.Format($"bad-{0:g}.txt", DateTime.Now), currentDomain);
+                        Helper.SaveText(string.Format("bad-{0:HH.mm.ss-dd-MM-yyyy}.txt", Globals.StarTime), currentDomain);
                         Globals.BadDomain++;
+                    }
+                    else if(response.Contains("handWork"))
+                    {
+                        Helper.SaveText(string.Format("possibly-{0:HH.mm.ss-dd-MM-yyyy}.txt", Globals.StarTime), currentDomain);
+                        Globals.ProxyNeed++;
                     }
                 }
                 Thread.Sleep(600);

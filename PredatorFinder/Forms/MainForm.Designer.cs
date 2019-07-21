@@ -40,7 +40,7 @@
             this.fromLbl = new System.Windows.Forms.Label();
             this.generateSourceButton = new System.Windows.Forms.Button();
             this.settingsGrp = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.proxyTextBox = new System.Windows.Forms.TextBox();
             this.timeoutTextBox = new System.Windows.Forms.TextBox();
             this.proxyLbl = new System.Windows.Forms.Label();
             this.threadNumeric = new System.Windows.Forms.NumericUpDown();
@@ -65,6 +65,8 @@
             this.showStatisticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.timeoutCountLbl = new System.Windows.Forms.Label();
             this.sourceGrp.SuspendLayout();
             this.settingsGrp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.threadNumeric)).BeginInit();
@@ -171,7 +173,7 @@
             // 
             // settingsGrp
             // 
-            this.settingsGrp.Controls.Add(this.textBox2);
+            this.settingsGrp.Controls.Add(this.proxyTextBox);
             this.settingsGrp.Controls.Add(this.timeoutTextBox);
             this.settingsGrp.Controls.Add(this.proxyLbl);
             this.settingsGrp.Controls.Add(this.threadNumeric);
@@ -183,12 +185,12 @@
             this.settingsGrp.TabIndex = 1;
             this.settingsGrp.TabStop = false;
             // 
-            // textBox2
+            // proxyTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(41, 65);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(81, 20);
-            this.textBox2.TabIndex = 6;
+            this.proxyTextBox.Location = new System.Drawing.Point(41, 65);
+            this.proxyTextBox.Name = "proxyTextBox";
+            this.proxyTextBox.Size = new System.Drawing.Size(81, 20);
+            this.proxyTextBox.TabIndex = 6;
             // 
             // timeoutTextBox
             // 
@@ -245,6 +247,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.timeoutCountLbl);
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.lblLeftCount);
             this.tabPage1.Controls.Add(this.lblBadCount);
             this.tabPage1.Controls.Add(this.lblGoodCount);
@@ -264,7 +268,7 @@
             // lblLeftCount
             // 
             this.lblLeftCount.AutoSize = true;
-            this.lblLeftCount.Location = new System.Drawing.Point(71, 92);
+            this.lblLeftCount.Location = new System.Drawing.Point(71, 117);
             this.lblLeftCount.Name = "lblLeftCount";
             this.lblLeftCount.Size = new System.Drawing.Size(13, 13);
             this.lblLeftCount.TabIndex = 7;
@@ -300,7 +304,7 @@
             // lblLeft
             // 
             this.lblLeft.AutoSize = true;
-            this.lblLeft.Location = new System.Drawing.Point(6, 92);
+            this.lblLeft.Location = new System.Drawing.Point(6, 117);
             this.lblLeft.Name = "lblLeft";
             this.lblLeft.Size = new System.Drawing.Size(28, 13);
             this.lblLeft.TabIndex = 3;
@@ -349,6 +353,7 @@
             this.logTxtBox.Location = new System.Drawing.Point(0, 0);
             this.logTxtBox.Multiline = true;
             this.logTxtBox.Name = "logTxtBox";
+            this.logTxtBox.ReadOnly = true;
             this.logTxtBox.Size = new System.Drawing.Size(157, 154);
             this.logTxtBox.TabIndex = 0;
             // 
@@ -360,10 +365,11 @@
             this.startButton.TabIndex = 8;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.Button1_Click);
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // updateTimer
             // 
+            this.updateTimer.Enabled = true;
             this.updateTimer.Interval = 1000;
             this.updateTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
             // 
@@ -404,6 +410,24 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 92);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "TimeOut:";
+            // 
+            // timeoutCountLbl
+            // 
+            this.timeoutCountLbl.AutoSize = true;
+            this.timeoutCountLbl.Location = new System.Drawing.Point(71, 92);
+            this.timeoutCountLbl.Name = "timeoutCountLbl";
+            this.timeoutCountLbl.Size = new System.Drawing.Size(13, 13);
+            this.timeoutCountLbl.TabIndex = 9;
+            this.timeoutCountLbl.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,7 +461,7 @@
         private System.Windows.Forms.GroupBox sourceGrp;
         private System.Windows.Forms.Button generateSourceButton;
         private System.Windows.Forms.GroupBox settingsGrp;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox proxyTextBox;
         private System.Windows.Forms.TextBox timeoutTextBox;
         private System.Windows.Forms.Label proxyLbl;
         private System.Windows.Forms.NumericUpDown threadNumeric;
@@ -469,6 +493,8 @@
         private System.Windows.Forms.TextBox letterTxtBox;
         private System.Windows.Forms.Label letterLbl;
         private System.Windows.Forms.MaskedTextBox generateFromTxt;
+        private System.Windows.Forms.Label timeoutCountLbl;
+        private System.Windows.Forms.Label label1;
     }
 }
 

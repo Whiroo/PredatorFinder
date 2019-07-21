@@ -22,15 +22,17 @@ namespace PredatorFinder
 
         private async void GenerateSource()
         {
+            Globals.Source.Clear();
             _fromNumber = Convert.ToDecimal(generateFromTxt.Text);
             _toNumber = Convert.ToDecimal(generateToTxt.Text);
             await Task.Run(() =>
             {
                 for (decimal i = _fromNumber; i <= _toNumber; i++)
                 {
-                    Globals.Source.Add($"{letterTxtBox.Text}{i.ToString()}{_pattern}");
+                    Globals.Source.Add($"http://{letterTxtBox.Text}0{i.ToString()}{_pattern}");
                 }
             });
+            SetSourceTxt((Globals.Source.Count - 1).ToString());
         }
 
         public delegate void MethodInvoker(object arg);
@@ -46,7 +48,7 @@ namespace PredatorFinder
                 }
                 //Присвоение всегда будет происходить только в главном потоке, независимот от того
                 //в каком потоке мы вызываем метод
-                this.logTxtBox.Text = arg.ToString() + logTxtBox.Text;
+                this.logTxtBox.Text = arg + logTxtBox.Text;
             }
             catch { }
             
@@ -56,23 +58,23 @@ namespace PredatorFinder
         {
             this.lblSourceCount.Text = count;
         }
-        private void ChoseSourceButton_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void WtfLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new InfoForm().ShowDialog();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void startButton_Click(object sender, EventArgs e)
         {
             if (!Check.IsWork)
             {
+                Globals.StarTime = DateTime.Now;
+                if (!string.IsNullOrEmpty(proxyTextBox.Text))
+                    Globals.Proxy = proxyTextBox.Text;
                 if (Globals.Source.Count == 0)
                 {
                     MessageBox.Show("Please, generate domain", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 Globals.BadDomain = 0;
@@ -95,10 +97,13 @@ namespace PredatorFinder
             }
             else
             {
+                MessageBox.Show("Wait for the threads to stop", "Wait", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 Check.StopThreads();
                 startButton.Text = "Start";
                 sourceGrp.Enabled = true;
                 settingsGrp.Enabled = true;
+                 
             }
         }
 
@@ -118,8 +123,9 @@ namespace PredatorFinder
             }
 
             lblGoodCount.Text = Globals.GoodDomain.ToString();
+            timeoutCountLbl.Text = Globals.ProxyNeed.ToString();
             lblBadCount.Text = Globals.BadDomain.ToString();
-            lblLeftCount.Text = (Globals.Source.Count - (Globals.GoodDomain + Globals.BadDomain)).ToString();
+            lblLeftCount.Text = (Globals.Source.Count - (Globals.GoodDomain + Globals.BadDomain + Globals.ProxyNeed)).ToString();
         }
 
         private void ShowStatisticToolStripMenuItem_Click(object sender, EventArgs e)
@@ -205,9 +211,13 @@ namespace PredatorFinder
 
         private void GenerateToTxt_TextChanged(object sender, EventArgs e)
         {
-            var s = double.Parse(generateToTxt.Text);
-            generateToTxt.SelectionStart = generateToTxt.Text.Length;
-            generateToTxt.Text = s.ToString("#,#");
+            try
+            {
+                var s = double.Parse(generateToTxt.Text);
+                generateToTxt.SelectionStart = generateToTxt.Text.Length;
+                generateToTxt.Text = s.ToString("#,#");
+            }
+            catch { }
         }
 
         private void LetterTxtBox_KeyPress(object sender, KeyPressEventArgs e)
