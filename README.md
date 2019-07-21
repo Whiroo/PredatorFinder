@@ -16,3 +16,4 @@ use HTTP proxy and set a longer timeout. Proxy is required to specify only one!
 
 
 # Screenshot:
+![Image alt](https://github.com/Whiroo/PredatorFinder/blob/master/PredatorFinder/Resources/PredatorFinderScreen.png)
