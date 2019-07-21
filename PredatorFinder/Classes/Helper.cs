@@ -46,11 +46,11 @@ namespace PredatorFinder.Classes
             return dialog.FileName;
         }
 
-        public static object[] LoadData(string filename)
+        public static List<string> LoadData(string filename)
         {
             var roster = new List<string>();
             roster.AddRange(File.ReadAllLines(filename));
-            return roster.ToArray();
+            return roster;
         }
     }
 }

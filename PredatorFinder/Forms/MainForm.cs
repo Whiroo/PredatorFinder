@@ -32,7 +32,7 @@ namespace PredatorFinder
                     Globals.Source.Add($"http://{letterTxtBox.Text}0{i.ToString()}{_pattern}");
                 }
             });
-            SetSourceTxt((Globals.Source.Count - 1).ToString());
+            SetSourceTxt((Globals.Source.Count).ToString());
         }
 
         public delegate void MethodInvoker(object arg);
@@ -226,6 +226,15 @@ namespace PredatorFinder
             {
                 e.Handled = true;
             }
+        }
+
+        private void RecheckChooseButton_Click(object sender, EventArgs e)
+        {
+            Globals.Source = Helper.LoadData(Helper.OpenDialog());
+            SetSourceTxt(Globals.Source.Count.ToString());
+            MessageBox.Show($@"Loaded {Globals.Source.Count.ToString()} domains");
+            tabControl1.SelectedTab = tabPage1;
+
         }
     }
 }

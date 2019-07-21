@@ -67,6 +67,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.timeoutCountLbl = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.recheckChooseButton = new System.Windows.Forms.Button();
             this.sourceGrp.SuspendLayout();
             this.settingsGrp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.threadNumeric)).BeginInit();
@@ -74,6 +76,7 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.trayStatistic.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // sourceGrp
@@ -239,6 +242,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(146, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -428,6 +432,27 @@
             this.timeoutCountLbl.TabIndex = 9;
             this.timeoutCountLbl.Text = "0";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.recheckChooseButton);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(157, 157);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Re-Check";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // recheckChooseButton
+            // 
+            this.recheckChooseButton.Location = new System.Drawing.Point(6, 6);
+            this.recheckChooseButton.Name = "recheckChooseButton";
+            this.recheckChooseButton.Size = new System.Drawing.Size(145, 23);
+            this.recheckChooseButton.TabIndex = 0;
+            this.recheckChooseButton.Text = "Choose possibly";
+            this.recheckChooseButton.UseVisualStyleBackColor = true;
+            this.recheckChooseButton.Click += new System.EventHandler(this.RecheckChooseButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -452,6 +477,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.trayStatistic.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -495,6 +521,8 @@
         private System.Windows.Forms.MaskedTextBox generateFromTxt;
         private System.Windows.Forms.Label timeoutCountLbl;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button recheckChooseButton;
     }
 }
 
